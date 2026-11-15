@@ -7,3 +7,11 @@ export const insertFamily = (family) => {
     const info = stmt.run(family);
     return info.lastInsertRowid;
 }
+
+//add another helper to help in lookin up when a family logs in 
+export const getFamilyByCode = (familyCode) => {
+    const stmt = db.prepare(
+        `SELECT * FROM families WHERE family_code = ?`
+    );
+       return stmt.get(familyCode);
+};
